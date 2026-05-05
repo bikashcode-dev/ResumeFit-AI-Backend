@@ -1,111 +1,150 @@
 <div align="center">
 
-# ResumeFit AI
+# ResumeFit AI — Backend
 
-**ATS resume optimization + builder · Java + React · AI-powered**
+**Spring Boot service for resume parsing, ATS matching, optimization, builder, and export**
 
-![Spring Boot](https://img.shields.io/badge/Spring_Boot_3-Java_17-6DB33F?style=flat-square&logo=springboot&logoColor=white)
-![React](https://img.shields.io/badge/React_19-Vite-61DAFB?style=flat-square&logo=react&logoColor=black)
-![AI](https://img.shields.io/badge/AI-Gemini_%7C_OpenAI-7F77DD?style=flat-square)
+![Java](https://img.shields.io/badge/Java_17-ED8B00?style=flat-square&logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot_3-6DB33F?style=flat-square&logo=springboot&logoColor=white)
+![Maven](https://img.shields.io/badge/Maven-C71A36?style=flat-square&logo=apachemaven&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Complete-brightgreen?style=flat-square)
-
-> Parse, score, improve, and export job-ready resumes — with weighted ATS matching and AI refinement.
 
 </div>
 
 ---
 
-## Problem This Solves
+## What It Does
 
-Most resumes fail for two reasons — weak alignment to the job description, and poor structure that ATS tools can't parse. ResumeFit AI fixes both.
-
----
-
-## Two Core Workflows
-
-**Optimizer** — Upload resume → Add JD → Parse + Analyze → Score + Match → Refined Draft → Export
-
-**Builder** — Enter details → Skills + Projects → Generate base → AI refinement → Live canvas → Export
+| Capability | Details |
+|---|---|
+| **Resume Parsing** | Upload PDF or DOCX → extract clean text, detect sections |
+| **JD Analysis** | Parse job descriptions, extract ATS keywords |
+| **ATS Matching** | Weighted keyword score against JD requirements |
+| **Suggestions** | Section-level improvement recommendations |
+| **Optimization** | AI-powered resume refinement |
+| **Builder** | New resume from structured profile input |
+| **Role Versions** | JD-targeted resume variants |
+| **Export** | DOCX, ATS PDF, Minimal PDF, Template PDF |
 
 ---
 
 ## Tech Stack
 
-| Layer | Technologies |
-|---|---|
-| **Frontend** | React 19, Vite, Axios, dark/light theme |
-| **Backend** | Java 17, Spring Boot 3, Jakarta Validation |
-| **Parsing** | Apache PDFBox (PDF), Apache POI (DOCX) |
-| **AI Layer** | Gemini → OpenRouter → OpenAI → Rule-based fallback |
-| **Export** | TXT, DOCX, ATS PDF, Minimal PDF, Template PDF |
+- **Java 17** · Spring Boot 3 · Maven
+- **Apache PDFBox** — PDF parsing
+- **Apache POI** — DOCX read/write
+- **Spring Validation** — request validation
+- **AI** — Gemini · OpenRouter · OpenAI · rule-based fallback
 
 ---
+
+## Request Flow
+
+```
+Upload resume + JD  →  Parse + Analyze  →  Match + Score  →  Optimize + Draft  →  Export
+```
+
 ---
 
-## Backend Architecture
+## AI Fallback Chain
 
-### Controllers
-- `ResumeParsingController` — file uploads, text extraction
-- `ResumeIntelligenceController` — match, suggestions, optimize, builder, export, versions
-- `ResumeController` — tailor endpoint
+```
+Gemini  →  OpenRouter  →  OpenAI  →  Rule-based (always available)
+```
 
-### Services
-- `ResumeParsingService` · `ResumeMatchingService` · `ResumeSuggestionService`
-- `ResumeOptimizationService` · `ResumeBuilderService` · `ResumeVersionService`
-- `ResumePdfExportService` · `ResumeExportService` · `ResumeSectionAssistService`
-
-### Utility Layer
-`KeywordExtractor` · `ResumeTextCleaner` · `ResumeSectionParser` · `ResumeSectionEditor` · `ResumeTruthGuard`
+If a provider fails, the backend automatically moves to the next. Rule-based fallback ensures the service never goes down.
 
 ---
 
 ## API Endpoints
 
+### Health
+```
+GET  /api/health
+```
+
+### Resume Parsing
 ```
 POST /api/resume/parse
+```
+
+### Job Description
+```
 POST /api/job-descriptions/analyze
+```
+
+### Intelligence
+```
 POST /api/resume/match
 POST /api/resume/suggestions
 POST /api/resume/optimize
 POST /api/resume/versions
-POST /api/resume/tailor
+```
+
+### Builder
+```
 POST /api/resume/builder/generate
 POST /api/resume/builder/assist-section
+```
+
+### Export
+```
 POST /api/resume/export/docx
-POST /api/resume/export/pdf/ats
-POST /api/resume/export/pdf/minimal
-POST /api/resume/export/pdf/template
+POST /api/resume/export/pdf/{style}
+```
+
+---
+
+## Project Structure
+
+```
+src/main/java/com/resumefit/
+├── config/        CORS, beans, AI provider config
+├── controller/    REST endpoints — parsing, intelligence, builder, export
+├── dto/           Request and response models
+├── exception/     Global error handling
+├── service/       Business logic — match, optimize, build, export
+└── util/          KeywordExtractor · TextCleaner · SectionParser
+
+src/main/resources/
+├── application.properties
+├── application-dev.properties
+└── application-prod.properties
 ```
 
 ---
 
 ## Run Locally
 
-**Backend**
 ```bash
+# Linux / Mac
 ./mvnw spring-boot:run
-# Windows: mvnw.cmd spring-boot:run
+
+# Windows
+mvnw.cmd spring-boot:run
 ```
 
-**Frontend**
-```bash
-npm install && npm run dev
+### Dev — `application-dev.properties`
+```
+GEMINI_API_KEY=
+OPENROUTER_API_KEY=
+OPENAI_API_KEY=
 ```
 
-**Env variables (prod)**
+### Prod — environment variables
 ```
 SPRING_PROFILES_ACTIVE=prod
 APP_CORS_ALLOWED_ORIGIN=<frontend-url>
-GEMINI_API_KEY / OPENROUTER_API_KEY / OPENAI_API_KEY
-VITE_API_URL=<backend-url>
+GEMINI_API_KEY=
+OPENROUTER_API_KEY=
+OPENAI_API_KEY=
 ```
 
 ---
 
-## Roadmap
+## Deployment
 
-- [x] Core optimizer + builder flows
-- [x] Weighted ATS scoring
-- [x] Multi-format export
-- [ ] User auth + resume history
-- [ ] Cover letter generation
+| Layer | Recommended |
+|---|---|
+| Backend | Render · Railway |
+| Frontend | Netlify · Vercel |
