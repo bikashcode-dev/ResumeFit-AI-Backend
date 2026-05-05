@@ -1,0 +1,15 @@
+# Backend build output
+target/
+
+# Local config and secrets
+.env
+.env.local
+application-dev.properties
+secrets.properties
+*.log
+
+# IDE/system files
+.idea/
+.DS_Store
+Thumbs.db
+.env.dev.properties

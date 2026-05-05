@@ -1,0 +1,12 @@
+package com.resumefit.dto;
+
+import java.util.List;
+import lombok.Builder;
+import lombok.Value;
+
+@Value
+@Builder
+public class ResumeSectionDto {
+    String title;
+    List<String> lines;
+}
