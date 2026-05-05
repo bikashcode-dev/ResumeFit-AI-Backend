@@ -40,22 +40,6 @@ Most resumes fail for two reasons — weak alignment to the job description, and
 | **Export** | TXT, DOCX, ATS PDF, Minimal PDF, Template PDF |
 
 ---
-
-## Match Scoring Logic
-
-Not simple keyword counting — weighted by category:
-
-| Category | Weight |
-|---|---|
-| Tools | 5 |
-| Skills | 4 |
-| Role signals | 3 |
-| General terms | 1 |
-
-```
-score = matched_keyword_weight / total_JD_keyword_weight × 100
-```
-
 ---
 
 ## Backend Architecture
