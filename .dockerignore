@@ -1,0 +1,8 @@
+target/
+.git/
+.idea/
+.env
+.env.local
+.env.*.local
+src/main/resources/application-dev.properties
+README.md
