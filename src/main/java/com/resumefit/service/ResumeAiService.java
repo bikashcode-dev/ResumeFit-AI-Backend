@@ -8,16 +8,13 @@ public class ResumeAiService {
 
     private final GeminiResumeClient geminiResumeClient;
     private final OpenRouterResumeClient openRouterResumeClient;
-    private final OpenAiResumeClient openAiResumeClient;
 
     public ResumeAiService(
             GeminiResumeClient geminiResumeClient,
-            OpenRouterResumeClient openRouterResumeClient,
-            OpenAiResumeClient openAiResumeClient
+            OpenRouterResumeClient openRouterResumeClient
     ) {
         this.geminiResumeClient = geminiResumeClient;
         this.openRouterResumeClient = openRouterResumeClient;
-        this.openAiResumeClient = openAiResumeClient;
     }
 
     public Optional<String> complete(String prompt) {
@@ -25,10 +22,7 @@ public class ResumeAiService {
         if (geminiResult.isPresent()) {
             return geminiResult;
         }
-        Optional<String> openRouterResult = openRouterResumeClient.complete(prompt);
-        if (openRouterResult.isPresent()) {
-            return openRouterResult;
-        }
-        return openAiResumeClient.complete(prompt);
+
+        return openRouterResumeClient.complete(prompt);
     }
 }
