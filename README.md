@@ -54,24 +54,8 @@ Gemini  →  OpenRouter  →  OpenAI  →  Rule-based (always available)
 
 If a provider fails, the backend automatically moves to the next. Rule-based fallback ensures the service never goes down.
 
----
-
-## API Endpoints
-
-### Health
-```
-GET  /api/health
-```
-
 ### Resume Parsing
-```
-POST /api/resume/parse
-```
-
-### Job Description
-```
-POST /api/job-descriptions/analyze
-```
+**Built with  by [Bikash Kumar](https://github.com/bikashcode-dev)**
 
 ### Intelligence
 ```
