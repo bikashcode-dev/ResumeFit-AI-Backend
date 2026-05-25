@@ -9,7 +9,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class CorsConfig {
 
-    @Value("${app.cors.allowed-origins:https://ai-resumeforge.netlify.app,https://astounding-stardust-efd692.netlify.app,http://localhost:5173}")
+    @Value("${app.cors.allowed-origins:https://roleforgeai.netlify.app," +
+            "https://ai-resumeforge.netlify.app," +
+            "https://astounding-stardust-efd692.netlify.app," +
+            "http://localhost:5173}")
     private String allowedOrigins;
 
     @Value("${app.cors.allowed-origin:}")
