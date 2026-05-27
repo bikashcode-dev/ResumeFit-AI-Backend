@@ -11,6 +11,7 @@ public class CorsConfig {
 
     @Value("${app.cors.allowed-origins:https://roleforgeai.netlify.app," +
             "https://ai-resumeforge.netlify.app," +
+            "https://astounding-stardust-efd692.netlify.app," +
             "https://ai-resume-builder-cv-match.netlify.app," +
             "http://localhost:5173}")
     private String allowedOrigins;
