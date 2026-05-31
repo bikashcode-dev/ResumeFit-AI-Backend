@@ -448,4 +448,4 @@ Backend:
 https://resumefit-ai-backend.onrender.com
 ```
 
-These are public service URLs only. Sensitive provider keys are intentionally not documented here.
+bas khatm thankyou
