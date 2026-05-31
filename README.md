@@ -1,13 +1,11 @@
 # ResumeFit AI
 
-ResumeFit AI is a full-stack resume optimization platform for job seekers who want to compare a resume against a job description, understand ATS gaps, improve sections, build a resume from structured details, and export recruiter-ready files.
+ResumeFit AI is a full-stack resume optimization platform for job seekers who want to compare a resume against a job description, understand ATS gaps, improve sections, build a resume from structured details, and export recruiter-ready files. Fresh Resme build from low and edit rebuild.
 
 The project has two main apps:
 
 - Frontend: React + Vite app in `frontend resume builder/resumefit-ai`
 - Backend: Spring Boot API in `backend resume builder`
-
-No secrets or API keys are stored in this README. Use environment variables for all sensitive values.
 
 ## Project Structure
 
@@ -94,9 +92,6 @@ Create a local `.env` file only when you need to override the API URL:
 ```env
 VITE_API_URL=https://resumefit-ai-backend.onrender.com
 ```
-
-Do not commit `.env` files. The repo already ignores environment files.
-
 ### Frontend Deployment
 
 Recommended Netlify settings:
