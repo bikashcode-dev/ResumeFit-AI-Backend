@@ -186,8 +186,6 @@ LOCAL_AI_ENABLED=false
 LOCAL_AI_URL=http://localhost:11434
 ```
 
-Never commit real API keys. Keep real values only in local environment files or deployment provider environment settings.
-
 ### Backend Deployment
 
 The backend includes a Dockerfile:
