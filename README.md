@@ -205,7 +205,7 @@ For Render, set environment variables in the Render dashboard. At minimum, confi
 
 ```text
 APP_CORS_ALLOWED_ORIGINS
-GEMINI_API_KEY or OPENROUTER_API_KEY, if AI provider output is required
+GEMINI_API_KEY or OPENROUTER_API_KEY
 ```
 
 If no AI provider key is configured, backend services can still use deterministic fallback behavior where implemented.
